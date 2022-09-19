@@ -9,35 +9,36 @@ namespace ChatHallaGiz
         public static NetworkStream s;
         public static BinaryWriter w;
         public static string nick;
-        RichTextBox richTextBox;
+        //RichTextBox richTextBox;
         private delegate void VisDelegate(string diplayTekst);
 
         public Form1()
         {
             InitializeComponent();
-            this.richTextBox = richTextBox;
+            //this.richTextBox = richTextBox;
         }
         private void Connect_Click(object sender, EventArgs e)
         {
-            
+
             tcpclient = new TcpClient();
             tcpclient.Connect("127.0.0.1", 8001);
             s = tcpclient.GetStream();
             w = new BinaryWriter(s);
             r = new BinaryReader(s);
-            w.Write(Username.Text);
-            w.Write(Username.Text);
+            nick = Username.Text;
+            w.Write(nick + " has entered the chatroom");
 
-            
-            
 
-            
-            
+
+
+
+
         }
 
         private void SendMessage_Click(object sender, EventArgs e)
         {
-            w.Write(nick + WriteBox.Text + "\n");
+            w.Write(nick + ": " + WriteBox.Text + "\n");
+            //richTextBox1.AppendText(WriteBox.Text);
             backgroundWorker2.RunWorkerAsync();
         }
 
@@ -63,18 +64,14 @@ namespace ChatHallaGiz
         }
         private void DisplayTexten(string diplayTekst)
         {
-            richTextBox.Text = diplayTekst;
+            //richTextBox.Text = diplayTekst;
         }
         public void TrådTilføjtekst()
         {
-            richTextBox1.AppendText("Hello world\n");
-            while (true)
-            {
-                if (s.DataAvailable)
-                {
-                    richTextBox1.AppendText(r.ReadString());
-                }
 
+            while (s.DataAvailable)
+            {
+                richTextBox1.AppendText(r.ReadString());
                 Thread.Sleep(1000);
             }
 
