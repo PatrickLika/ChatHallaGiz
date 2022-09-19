@@ -5,25 +5,17 @@ namespace ChatHallaGiz
     public partial class Form1 : Form
     {
         private TraadKlasse t1;
-        public static BinaryReader r;
-        public static TcpClient tcpclient;
-        public static NetworkStream s;
-        public static BinaryWriter w;
-        public static string nick;
-
+        static BinaryReader r;
+        TcpClient tcpclient;
+        NetworkStream s;
+        BinaryWriter w;
+        string nick;
 
         public Form1()
         {
             InitializeComponent();
 
         }
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //t1 = new TraadKlasse(richTextBox1);
-            //Thread firstThread = new Thread(new ThreadStart(t1.TraadVisTekst)) { IsBackground = true };
-            //firstThread.Start();
-        }
-
 
         private void Connect_Click(object sender, EventArgs e)
         {
@@ -41,7 +33,6 @@ namespace ChatHallaGiz
             firstThread.Start();
 
         }
-
         private void SendMessage_Click(object sender, EventArgs e)
         {
             w.Write(nick + ": " + WriteBox.Text + "\n");
@@ -67,6 +58,10 @@ namespace ChatHallaGiz
         }
 
         private void WriteBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
