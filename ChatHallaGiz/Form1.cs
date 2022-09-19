@@ -21,13 +21,13 @@ namespace ChatHallaGiz
         {
 
             tcpclient = new TcpClient();
-            tcpclient.Connect("127.0.0.1", 8001);
+            tcpclient.Connect("192.168.130.131", 8001);
             s = tcpclient.GetStream();
             w = new BinaryWriter(s);
             r = new BinaryReader(s);
             nick = Username.Text;
             w.Write(nick + " has entered the chatroom");
-
+            
 
 
 
@@ -68,13 +68,13 @@ namespace ChatHallaGiz
         }
         public void TrådTilføjtekst()
         {
-
             while (s.DataAvailable)
             {
                 richTextBox1.AppendText(r.ReadString());
-                Thread.Sleep(1000);
+                Thread.Sleep(25);
             }
-
+                    
+                    
         }
 
         private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
