@@ -22,7 +22,7 @@ public class Serv
                     NetworkStream socketStream = new NetworkStream(s);
                     BinaryReader reader = new BinaryReader(socketStream);
                     string txt = reader.ReadString(); // get nickname
-                    string nick = txt.Substring(0, 4);
+                    string nick = txt.Substring(0, 10);
                     Console.WriteLine("New user has entered the chatroom, nickname: " + nick);
                     clientHandlers[nick] = ch;
                 }
