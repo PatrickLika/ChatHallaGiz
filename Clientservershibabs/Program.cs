@@ -70,8 +70,7 @@ public class ClientHandler
                 {
                     foreach (var pair in Serv.clientHandlers)
                     {
-                        if ()
-                            this.writer.Write(pair.Key + " ");
+                        this.writer.Write(pair.Key + " ");
                     }
                 }
                 txt = reader.ReadString(); // NICK: MSG
