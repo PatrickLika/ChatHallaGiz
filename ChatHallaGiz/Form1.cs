@@ -21,7 +21,7 @@ namespace ChatHallaGiz
         {
 
             tcpclient = new TcpClient();
-            tcpclient.Connect("192.168.233.1", 8001);
+            tcpclient.Connect("192.168.94.216", 8001);
             s = tcpclient.GetStream();
             w = new BinaryWriter(s);
             r = new BinaryReader(s);

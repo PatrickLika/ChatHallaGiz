@@ -1,5 +1,5 @@
-﻿using System.Net.Sockets;
-using System.Net;
+﻿using System.Net;
+using System.Net.Sockets;
 
 public class Serv
 {
@@ -41,6 +41,7 @@ public class Serv
 public class ClientHandler
 {
     private Socket s;
+    private readonly List<string> _medlemmer;
     private NetworkStream socketStream;
     public BinaryWriter writer;
     private BinaryReader reader;
@@ -51,16 +52,28 @@ public class ClientHandler
         socketStream = new NetworkStream(s);
         writer = new BinaryWriter(socketStream);
         reader = new BinaryReader(socketStream);
+
+
+
     }
 
     public void HandleClient()
     {
         Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
         string txt = "retur ";
+
         while (true)
         {
             try
             {
+                if (reader.ReadString().Contains("/m"))
+                {
+                    foreach (var pair in Serv.clientHandlers)
+                    {
+                        if ()
+                            this.writer.Write(pair.Key + " ");
+                    }
+                }
                 txt = reader.ReadString(); // NICK: MSG
                 Console.WriteLine(txt); // echo on server
                 string nick = txt.Substring(0, 10);
@@ -77,3 +90,15 @@ public class ClientHandler
         }
     }
 }
+
+
+
+/*
+
+foreach (var pair in Serv.clientHandlers)
+{
+    pair.Value.writer.Write(" " + medlem);
+
+}
+
+*/
